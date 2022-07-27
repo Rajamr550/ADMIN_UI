@@ -18,28 +18,7 @@ export class AdminService {
 
     }
 
-    // constructor(private httpClient: HttpClient) {
 
-
-    // }
-
-
-
-    // getAllEmployees(): Observable<any> {
-
-    //     let httpOptions = {
-
-    //         headers: new HttpHeaders({
-
-    //             'Access-Control-Allow-Origin': '*',
-
-    //         }),
-
-    //     };
-
-    //     return this.httpClient.get<any>(this.url, httpOptions);
-
-    // }
 
     getAllAdmins(): Observable<any> {
         let httpOptions = {
@@ -53,13 +32,36 @@ export class AdminService {
     addAdmins(adminObject: AdminEntity) {
         this.admin.push(adminObject);
     }
+    // createNewInterview(interviewForms: any): Observable<any> {
+    //     this.token = this.loginService.getToken();
+    //     console.log("inside inter service - token value - >", this.token);
+    //     // this.test = "added 1" + this.test;
+    //     // console.log("test ++ ", this.test)
+    //     let httpOptions = {
+    //         headers: new HttpHeaders({
+    //             'Access-Control-Allow-Origin': '*',
+    //             'Content-Type': 'application/json',
+    //             // 'Authorization': 'Bearer ' + this.token.jwt.valueOf
+    //             'Authorization': 'Bearer ' + this.token
 
+
+    //         }),
+    //     };
+    //     // console.log("jwt value ", this.token.jwt.valueOf)
+    //     // console.log("jwt value only jwt  ", this.token.jwt)
+
+    //     return this.httpClient.post<any>(
+    //         this.postUrl,
+    //         JSON.stringify(interviewForms),
+    //         httpOptions
+    //     );
+    // }
     createNewAdmin(adminForms: any): Observable<any> {
 
         let httpOptions = {
             headers: new HttpHeaders({
+                'Access-Control-Allow-Origin': '*',
                 'Content-Type': 'application/json',
-                'Access-Control-Allow-Origin': '*'
 
 
             }),
