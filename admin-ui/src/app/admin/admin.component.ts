@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AdminEntity } from '../entity/admin.entity';
+import { Router, RouterModule } from '@angular/router';
 
 import { AdminService } from '../services/admin.services';
 
@@ -16,8 +17,8 @@ export class AdminComponent {
   adminId: number = 0;
 
   admin: AdminEntity = new AdminEntity();
-
-  constructor(private adminService: AdminService) {
+  text: any;
+  constructor(private adminService: AdminService, private router: Router) {
 
     this.adminService.getAllAdmins().subscribe((serverResponse: any) => {
       console.log('constrcutor serverResponse ', serverResponse);
@@ -68,7 +69,19 @@ export class AdminComponent {
     });
   }
 
+
+  navToEditPage = () => {
+    console.log("nav called");
+    this.router.navigate(['/admin_edit']);
+
+  }
+
+
 }
+
+// searchByCriteria = (this.text) => {
+//   console.log("search called ");
+// }
 
 
 

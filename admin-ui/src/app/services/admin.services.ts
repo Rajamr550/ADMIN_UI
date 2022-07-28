@@ -10,9 +10,22 @@ export class AdminService {
     getUrl = 'http://localhost:7779/admin/';
     deleteUrl = 'http://localhost:7779/admin/user/';
     postUrl = 'http://localhost:7779/admin/user';
-
-    token: string = '';
+    searchUrl = 'http://localhost:7779/admin/';
     constructor(private httpClient: HttpClient) {
+
+    }
+
+    searchByCriteria(text : any): Observable<any> {
+
+        let httpOptions = {
+            headers: new HttpHeaders({
+                'Access-Control-Allow-Origin': '*',
+                'Content-Type': 'application/json'
+
+            }),
+        };
+
+        return this.httpClient.get<any>(this.searchUrl, httpOptions);
 
     }
 
