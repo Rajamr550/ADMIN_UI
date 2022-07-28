@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
 export class AdminService {
 
     getUrl = 'http://localhost:7779/admin/';
-    deleteUrl = 'http://localhost:7779/admin/admin';
+    deleteUrl = 'http://localhost:7779/admin/user/';
     postUrl = 'http://localhost:7779/admin/user';
 
     token: string = '';
@@ -16,7 +16,20 @@ export class AdminService {
 
     }
 
+    deleteByadminId(adminId: number): Observable<Boolean> {
+        const headers = {
 
+            'content-type': 'application/json',
+
+            'Access-Control-Allow-Origin': '*',
+        };
+
+        return this.httpClient.delete<Boolean>(this.deleteUrl + adminId, {
+
+            headers: headers
+
+        });
+    }
 
     getAllAdmins(): Observable<any> {
         let httpOptions = {

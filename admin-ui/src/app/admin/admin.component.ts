@@ -60,7 +60,12 @@ export class AdminComponent {
   }
 
   deleteAdminById = (id: any) => {
+    console.log("delete called ", id);
+    this.adminService.deleteByadminId(id).subscribe((serverResponse: any) => {
+      this.forms.pop(id);
+      console.log('deleteByID - serviceResponse : ', serverResponse);
 
+    });
   }
 
 }

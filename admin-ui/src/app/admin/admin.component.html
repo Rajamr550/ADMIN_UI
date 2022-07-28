@@ -77,7 +77,8 @@
             <td>{{detail.email}}</td>
             <td>{{detail.phNumber}}</td>
             <td><button type="button" class="btn btn-success bg-primary">Edit</button></td>
-            <td><button type="button" class="btn btn-success bg-danger">Delete</button></td>
+            <td><button type="button" class="btn btn-success bg-danger"
+                    (click)="deleteAdminById(detail.id)">Delete</button></td>
         </tr>
 
     </tbody>
