@@ -11,11 +11,59 @@ export class AdminService {
     deleteUrl = 'http://localhost:7779/admin/user/';
     postUrl = 'http://localhost:7779/admin/user';
     searchUrl = 'http://localhost:7779/admin/';
+    editUrl = 'http://localhost:7779/admin/user/';
     constructor(private httpClient: HttpClient) {
 
     }
+    editAdmin(id: any, adminForms: any): Observable<any> {
 
-    searchByCriteria(text : any): Observable<any> {
+        let httpOptions = {
+            headers: new HttpHeaders({
+                'Access-Control-Allow-Origin': '*',
+                'Content-Type': 'application/json'
+
+            }),
+        };
+
+
+        return this.httpClient.put<any>(
+            this.editUrl + id,
+            JSON.stringify(adminForms),
+            httpOptions
+        );
+    }
+
+
+    createNewAdmin(adminForms: any): Observable<any> {
+
+        let httpOptions = {
+            headers: new HttpHeaders({
+                'Access-Control-Allow-Origin': '*',
+                'Content-Type': 'application/json'
+
+            }),
+        };
+
+
+        return this.httpClient.post<any>(
+            this.postUrl,
+            JSON.stringify(adminForms),
+            httpOptions
+        );
+    }
+
+
+    admin = [
+        {
+            name: 'raja',
+            password: 'pass',
+            email: 'raja@gmail.com',
+            phNumber: 1234512345
+
+        },
+    ];
+
+    searchByCriteria(text: any): Observable<any> {
 
         let httpOptions = {
             headers: new HttpHeaders({
@@ -56,37 +104,6 @@ export class AdminService {
     addAdmins(adminObject: AdminEntity) {
         this.admin.push(adminObject);
     }
-
-    createNewAdmin(adminForms: any): Observable<any> {
-
-        let httpOptions = {
-            headers: new HttpHeaders({
-                'Access-Control-Allow-Origin': '*',
-                'Content-Type': 'application/json'
-
-            }),
-        };
-
-
-        return this.httpClient.post<any>(
-            this.postUrl,
-            JSON.stringify(adminForms),
-            httpOptions
-        );
-    }
-
-
-    admin = [
-        {
-            name: 'raja',
-            password: 'pass',
-            email: 'raja@gmail.com',
-            phNumber: 1234512345
-
-        },
-    ];
-
-
 
 
 

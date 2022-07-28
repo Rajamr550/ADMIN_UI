@@ -5,7 +5,7 @@ import { AdminComponent } from './admin/admin.component';
 import { AdminEditComponent } from './admin-edit/admin-edit.component';
 const routes: Routes = [
   { path: 'admin_form', component: AdminComponent },
-  { path: 'admin_edit', component: AdminEditComponent }
+  { path: 'admin_edit/:id', component: AdminEditComponent }
 ];
 
 @NgModule({
@@ -13,4 +13,4 @@ const routes: Routes = [
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
-export const routingComponents = [AdminComponent,AdminEditComponent]
+export const routingComponents = [AdminComponent, AdminEditComponent]

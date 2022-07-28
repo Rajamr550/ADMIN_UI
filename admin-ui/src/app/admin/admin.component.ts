@@ -70,9 +70,9 @@ export class AdminComponent {
   }
 
 
-  navToEditPage = () => {
-    console.log("nav called");
-    this.router.navigate(['/admin_edit']);
+  navToEditPage = (id: number) => {
+    console.log("nav called", id);
+    this.router.navigate(['/admin_edit', id]);
 
   }
 
