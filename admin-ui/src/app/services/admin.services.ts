@@ -10,10 +10,9 @@ export class AdminService {
 
     getUrl = 'http://localhost:7779/admin/';
     deleteUrl = 'http://localhost:7779/admin/admin';
-    postUrl = 'http://localhost:7779/admin/admin/user';
+    postUrl = 'http://localhost:7779/admin/user';
 
     token: string = '';
-    // test: string = 'Bearer ';
     constructor(private httpClient: HttpClient) {
 
     }
@@ -32,37 +31,13 @@ export class AdminService {
     addAdmins(adminObject: AdminEntity) {
         this.admin.push(adminObject);
     }
-    // createNewInterview(interviewForms: any): Observable<any> {
-    //     this.token = this.loginService.getToken();
-    //     console.log("inside inter service - token value - >", this.token);
-    //     // this.test = "added 1" + this.test;
-    //     // console.log("test ++ ", this.test)
-    //     let httpOptions = {
-    //         headers: new HttpHeaders({
-    //             'Access-Control-Allow-Origin': '*',
-    //             'Content-Type': 'application/json',
-    //             // 'Authorization': 'Bearer ' + this.token.jwt.valueOf
-    //             'Authorization': 'Bearer ' + this.token
 
-
-    //         }),
-    //     };
-    //     // console.log("jwt value ", this.token.jwt.valueOf)
-    //     // console.log("jwt value only jwt  ", this.token.jwt)
-
-    //     return this.httpClient.post<any>(
-    //         this.postUrl,
-    //         JSON.stringify(interviewForms),
-    //         httpOptions
-    //     );
-    // }
     createNewAdmin(adminForms: any): Observable<any> {
 
         let httpOptions = {
             headers: new HttpHeaders({
                 'Access-Control-Allow-Origin': '*',
-                'Content-Type': 'application/json',
-
+                'Content-Type': 'application/json'
 
             }),
         };
@@ -78,10 +53,11 @@ export class AdminService {
 
     admin = [
         {
-            adminName: 'raja',
-            adminPass: 'pass',
-            adminPhone: 1234512345,
-            adminMail: 'raja@gmail.com'
+            name: 'raja',
+            password: 'pass',
+            email: 'raja@gmail.com',
+            phNumber: 1234512345
+
         },
     ];
 

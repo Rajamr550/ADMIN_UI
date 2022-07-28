@@ -1,7 +1,8 @@
 export class AdminEntity {
-    adminName: string = '';
-    adminPass: string = '';
-    adminMail: string = '';
-    adminPhone: number = 0;
+    id: number = 0;
+    name: string = '';
+    password: string = '';
+    email: string = '';
+    phNumber: number = 0;
 
 }

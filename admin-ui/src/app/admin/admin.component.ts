@@ -11,8 +11,11 @@ import { AdminService } from '../services/admin.services';
 export class AdminComponent {
   forms: any = [];
   adminDetails: Array<AdminEntity> = new Array();
+  admin_form: Array<AdminEntity> = new Array();
+
   adminId: number = 0;
 
+  admin: AdminEntity = new AdminEntity();
 
   constructor(private adminService: AdminService) {
 
@@ -23,17 +26,19 @@ export class AdminComponent {
   }
 
   adminForm = new FormGroup({
-    adminId: new FormControl(12, [Validators.required]),
-    adminName: new FormControl('r', [Validators.required]),
-    adminPass: new FormControl('e', [Validators.required]),
-    adminPhone: new FormControl(99, [Validators.required]),
-    adminMail: new FormControl('r', [Validators.required])
+    adminId: new FormControl([Validators.required]),
+    adminName: new FormControl([Validators.required]),
+    adminPass: new FormControl([Validators.required]),
+    adminPhone: new FormControl([Validators.required]),
+    adminMail: new FormControl([Validators.required])
   })
 
 
 
 
   submitAdminForm = () => {
+    console.log('admin obj ', this.admin);
+
 
     var admin_form: any = {
       adminName: this.adminForm.value['adminName'],
@@ -43,7 +48,7 @@ export class AdminComponent {
 
     };
 
-    this.adminService.createNewAdmin(admin_form).subscribe((serverResponse: any) => {
+    this.adminService.createNewAdmin(this.admin).subscribe((serverResponse: any) => {
       console.log('createNewAdmin - serviceResponse : ', serverResponse);
 
       this.forms.push(serverResponse);
