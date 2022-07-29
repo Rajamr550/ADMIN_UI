@@ -10,7 +10,7 @@ export class AdminService {
     getUrl = 'http://localhost:7779/admin/';
     deleteUrl = 'http://localhost:7779/admin/user/';
     postUrl = 'http://localhost:7779/admin/user';
-    searchUrl = 'http://localhost:7779/admin/';
+    searchUrl = 'http://localhost:7779/admin/?name=';
     editUrl = 'http://localhost:7779/admin/user/';
     constructor(private httpClient: HttpClient) {
 
@@ -73,7 +73,7 @@ export class AdminService {
             }),
         };
 
-        return this.httpClient.get<any>(this.searchUrl, httpOptions);
+        return this.httpClient.get<any>(this.searchUrl + text, httpOptions);
 
     }
 
@@ -104,7 +104,7 @@ export class AdminService {
     addAdmins(adminObject: AdminEntity) {
         this.admin.push(adminObject);
     }
-
-
-
 }
+
+
+

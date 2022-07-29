@@ -3,15 +3,20 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule, routingComponents } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { AdminComponent } from './admin/admin.component';
-
-import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
-import { AdminEditComponent } from './admin-edit/admin-edit.component';
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
+import { Ng2OrderModule } from 'ng2-order-pipe';
+import { NgxPaginationModule } from 'ngx-pagination';
+import { SearchFilterPipe } from './search-filter.pipe';
+import { AdminService } from './services/admin.services';
 @NgModule({
   declarations: [
     AppComponent,
-    routingComponents
+    routingComponents,
+    SearchFilterPipe,
+
+
   ],
   imports: [
     BrowserModule,
@@ -19,9 +24,12 @@ import { AdminEditComponent } from './admin-edit/admin-edit.component';
     ReactiveFormsModule,
     FormsModule,
     HttpClientModule,
-
+    Ng2OrderModule,
+    Ng2SearchPipeModule,
+    NgxPaginationModule,
+    SearchFilterPipe
   ],
-  providers: [],
+  providers: [AdminService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

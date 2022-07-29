@@ -1,6 +1,11 @@
 <h1>Admin - Form </h1>
 <br><br>
 
+<nav class="navbar">
+    <input type="text" name="firstName" [(ngModel)]="firstName" placeholder="type here to search "
+        (ngModelChange)="search()" class="form-control">
+</nav>
+
 <form [formGroup]="adminForm" (ngSubmit)="submitAdminForm()">
 
     <div class="container">
@@ -46,17 +51,42 @@
             <button type="submit" class="btn btn-success">Submit</button>
         </div>
         <br />
+
+        <div class="form-group">
+            <input type="text" [(ngModel)]="searchText" [ngModelOptions]="{standalone:true}">
+            <p>{{searchText}}</p>
+
+            <button type="button" class="btn btn-success" (click)="searchByCriteria()">Search</button>
+
+        </div>
+
+        <br>
+        <br>
+
+        <div>
+            <button type="button" class="btn btn-success" (click)="getAll()">AdminList</button>
+        </div>
+
+        <div class="form-group">
+            <input type="text" class="form-control mb-4" placeholder=" newww Search" [(ngModel)]="query"
+                id="listSearch">
+        </div>
     </div>
 
-    <!-- <div class="form-group">
 
-        <input type="text" [(ngModel)]="text" placeholder="search here" class="form-control"
-            formControlName="searchText" />
 
-        <button type="button" (click)="searchByCriteria(text)">Search/button>
-    </div> -->
 
 </form>
+
+
+<!-- 
+<form>
+    <div class="form-group">
+
+    </div>
+
+</form> -->
+
 
 
 
@@ -76,17 +106,18 @@
     <tbody>
 
 
-        <tr *ngFor="let detail of forms">
+        <tr *ngFor="let detail of forms | searchFilter : query "">
             <td>{{detail.id}}</td>
             <td>{{detail.name}}</td>
             <td>{{detail.email}}</td>
             <td>{{detail.phNumber}}</td>
-            <td><button type="button" class="btn btn-success bg-primary"
-                    (click)="navToEditPage(detail.id)">Edit</button>
+            <td><button type=" button" class="btn btn-success bg-primary" (click)="navToEditPage(detail.id)">
+            Edit</button>
             </td>
             <td><button type="button" class="btn btn-success bg-danger"
                     (click)="deleteAdminById(detail.id)">Delete</button></td>
         </tr>
+
 
     </tbody>
 </table>

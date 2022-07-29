@@ -1,8 +1,7 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AdminEntity } from '../entity/admin.entity';
-import { Router, RouterModule } from '@angular/router';
-
+import { Router } from '@angular/router';
 import { AdminService } from '../services/admin.services';
 
 @Component({
@@ -11,19 +10,30 @@ import { AdminService } from '../services/admin.services';
 })
 export class AdminComponent {
   forms: any = [];
+  searchForms: any = [];
   adminDetails: Array<AdminEntity> = new Array();
   admin_form: Array<AdminEntity> = new Array();
 
   adminId: number = 0;
 
   admin: AdminEntity = new AdminEntity();
-  text: any;
-  constructor(private adminService: AdminService, private router: Router) {
+  searchText: string = '';
 
-    this.adminService.getAllAdmins().subscribe((serverResponse: any) => {
-      console.log('constrcutor serverResponse ', serverResponse);
-      this.forms = serverResponse;
-    })
+  firstName: any;
+  constructor(private adminService: AdminService, private router: Router) {
+    //this.getAll();
+
+  }
+
+  search() {
+    if (this.firstName == "") {
+      this.getAll();
+    }
+    else {
+      this.forms = this.forms.filter((res: { firstName: string; }) => {
+        return res.firstName.toLocaleLowerCase().match(this.firstName.toLocaleLowerCase());
+      })
+    }
   }
 
   adminForm = new FormGroup({
@@ -35,7 +45,12 @@ export class AdminComponent {
   })
 
 
-
+  getAll = () => {
+    this.adminService.getAllAdmins().subscribe((serverResponse: any) => {
+      console.log('constrcutor serverResponse ', serverResponse);
+      this.forms = serverResponse;
+    })
+  }
 
   submitAdminForm = () => {
     console.log('admin obj ', this.admin);
@@ -45,9 +60,10 @@ export class AdminComponent {
       adminName: this.adminForm.value['adminName'],
       adminPass: this.adminForm.value['adminPass'],
       adminPhone: this.adminForm.value['adminPhone'],
-      adminMail: this.adminForm.value['adminMail'],
-
+      adminMail: this.adminForm.value['adminMail']
     };
+
+
 
     this.adminService.createNewAdmin(this.admin).subscribe((serverResponse: any) => {
       console.log('createNewAdmin - serviceResponse : ', serverResponse);
@@ -59,6 +75,16 @@ export class AdminComponent {
     this.adminService.addAdmins(admin_form);
 
   }
+
+  searchByCriteria = () => {
+    this.adminService.searchByCriteria(this.searchText).subscribe((serverResponse: any) => {
+      console.log('search  - serviceResponse : ', serverResponse);
+      this.searchForms.push(serverResponse);
+    });
+
+
+  }
+
 
   deleteAdminById = (id: any) => {
     console.log("delete called ", id);
@@ -77,11 +103,14 @@ export class AdminComponent {
   }
 
 
+
+  // changeName(event: Event) {
+  //   this.age = (<HTMLInputElement>event.target).value;
+  // }
+
 }
 
-// searchByCriteria = (this.text) => {
-//   console.log("search called ");
-// }
+
 
 
 
