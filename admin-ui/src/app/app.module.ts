@@ -5,17 +5,13 @@ import { AppRoutingModule, routingComponents } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
-
-import { SearchPipe } from './search-filter.pipe';
+import { DataTablesModule } from 'angular-datatables';
 import { AdminService } from './services/admin.services';
-import { Ng2SearchPipe } from 'ng2-search-filter';
 
-import { Ng2SearchPipeModule } from 'ng2-search-filter';
 @NgModule({
   declarations: [
     AppComponent,
     routingComponents,
-    SearchPipe
 
 
 
@@ -26,7 +22,7 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
     ReactiveFormsModule,
     FormsModule,
     HttpClientModule,
-    Ng2SearchPipeModule
+    DataTablesModule
   ],
   providers: [AdminService],
   bootstrap: [AppComponent]
