@@ -1,13 +1,4 @@
 
-//ts
-@Output()
-  addAdminEvent:EventEmitter<AdminEntity> = new EventEmitter();
-  
-  
-  
-  //pipe
-  
-  
 import {Pipe, PipeTransform} from '@angular/core';
 import { AdminEntity } from './entity/admin.entity';
 @Pipe({
