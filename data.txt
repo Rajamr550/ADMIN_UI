@@ -1,22 +1,7 @@
 
-import {Pipe, PipeTransform} from '@angular/core';
-import { AdminEntity } from './entity/admin.entity';
-@Pipe({
-    name: 'searchadv'
-})
 
-
-export class SearchPipe implements PipeTransform {
-    transform(admins:Array<AdminEntity>, searchText:string):Array<AdminEntity> {
-        let filteredAdminEntitys:Array<AdminEntity> = [];
-        if(searchText === '') {
-            return admins;
-        }
-        for(let admin of admins) {
-            if(admin.name.includes(searchText) || admin.email.includes(searchText)) {
-                    filteredAdminEntitys.push(admin);
-                }
-        }
-        return filteredAdminEntitys;
-    }
-}
+        <div class="form-group">
+            <label for="searchText">Search:</label>
+            <input type="text" class="form-control" #searchText (keyup)="0">
+            <button type="button" (click) = "pipe22(searchText)" >click me new</button>
+        </div>
