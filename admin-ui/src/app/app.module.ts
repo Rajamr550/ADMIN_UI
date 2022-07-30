@@ -7,7 +7,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { DataTablesModule } from 'angular-datatables';
 import { AdminService } from './services/admin.services';
-
+import { MatIconModule } from '@angular/material/icon'
 @NgModule({
   declarations: [
     AppComponent,
@@ -22,7 +22,8 @@ import { AdminService } from './services/admin.services';
     ReactiveFormsModule,
     FormsModule,
     HttpClientModule,
-    DataTablesModule
+    DataTablesModule,
+    MatIconModule
   ],
   providers: [AdminService],
   bootstrap: [AppComponent]

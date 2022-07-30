@@ -1,0 +1,31 @@
+.icon-display {
+   transform: scale(1.2);
+   }
+
+.table_size{
+    width:80%;
+    height: 60%;
+    border: 10%;
+}
+
+.submit-button{
+    width: 25%;
+    height: 10%;
+    border: none;
+    outline: none;
+    background: #2f2f2f;
+    color: #fff;
+    font-size: 22px;
+    border-radius: 40px;
+    text-align: center;
+    box-shadow: 0 6px 20px -5px rgba(0,0,0,0.4);
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+
+
+button {
+border: none;
+}

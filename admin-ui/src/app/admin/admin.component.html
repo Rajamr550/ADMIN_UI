@@ -1,11 +1,6 @@
 <h1>Admin - Form </h1>
 <br><br>
 
-<!-- <nav class="navbar">
-    <input type="text" name="firstName" [(ngModel)]="firstName" placeholder="type here to search "
-        (ngModelChange)="search()" class="form-control">
-</nav> -->
-
 <form [formGroup]="adminForm" (ngSubmit)="submitAdminForm()">
 
     <div class="container">
@@ -48,7 +43,8 @@
 
         <br />
         <div class="form-group">
-            <button type="submit" class="btn btn-success">Submit</button>
+            <button type="submit" class="submit-button">SUBMIT
+            </button>
         </div>
         <br />
 
@@ -69,37 +65,46 @@
 
 
 
+<div class="table_size">
 
 
+    <table cellspacing="0" cellpadding="0" style="border:none;" datatable [dtOptions]="dtOptions"
+        class="table table-borderless">
+        <thead>
 
-<table datatable [dtOptions]="dtOptions" class="row-border hover">
-    <thead>
+            <tr>
+                <th scope=" col">ID</th>
+                <th scope="col">Name</th>
+                <th scope="col">
+                    <mat-icon [ngStyle]="{'color':'BLACL'}" class="icon-display">markunread</mat-icon>
+                </th>
+                <th scope="col">
+                    <mat-icon [ngStyle]="{'color':'BLACK'}" class="icon-display">settings_phone</mat-icon>
+                </th>
+                <th scope="col">EDIT</th>
+                <th scope="col">DELETE</th>
+            </tr>
+        </thead>
 
-        <tr>
-            <th scope="col">ID</th>
-            <th scope="col">Name</th>
-            <th scope="col">E-Mail</th>
-            <th scope="col">Mobile</th>
-            <th scope="col">EDIT</th>
-            <th scope="col">DELETE</th>
-        </tr>
-    </thead>
-
-    <tbody>
-
-
-        <tr *ngFor="let detail of forms">
-            <td>{{detail.id}}</td>
-            <td>{{detail.name}}</td>
-            <td>{{detail.email}}</td>
-            <td>{{detail.phNumber}}</td>
-            <td><button type=" button" class="btn btn-success bg-primary" (click)="navToEditPage(detail.id)">
-                    Edit</button>
-            </td>
-            <td><button type="button" class="btn btn-success bg-danger"
-                    (click)="deleteAdminById(detail.id)">Delete</button></td>
-        </tr>
+        <tbody>
 
 
-    </tbody>
-</table>
+            <tr *ngFor="let detail of forms">
+                <td>{{detail.id}}</td>
+                <td>{{detail.name}}</td>
+                <td>{{detail.email}}</td>
+                <td>{{detail.phNumber}}</td>
+                <td><button type="button" (click)="navToEditPage(detail.id)">
+                        <mat-icon [ngStyle]="{'color':'BLUE'}" [ngStyle]="{'color':'BLUE'}" class="icon-display">
+                            mode_edit</mat-icon>
+                    </button>
+                </td>
+                <td><button (click)="deleteAdminById(detail.id)">
+                        <mat-icon [ngStyle]="{'color':'RED'}" class="icon-display">delete</mat-icon>
+                    </button></td>
+            </tr>
+
+
+        </tbody>
+    </table>
+</div>

@@ -6,7 +6,9 @@ import { AdminService } from '../services/admin.services';
 
 @Component({
   selector: 'admin',
-  templateUrl: './admin.component.html'
+  templateUrl: './admin.component.html',
+  styleUrls: ['./admin.component.css']
+
 })
 export class AdminComponent {
   dtOptions: DataTables.Settings = {};
@@ -24,14 +26,16 @@ export class AdminComponent {
     this.dtOptions = {
       pagingType: 'full_numbers',
       pageLength: 5,
-      processing: true
+      processing: true,
+
+
     };
 
     this.adminService.getAllAdmins().subscribe((serverResponse: any) => {
       console.log('constrcutor serverResponse ', serverResponse);
       // this.forms = serverResponse;
       this.forms = serverResponse;
-     
+
     })
   }
 
@@ -96,10 +100,6 @@ export class AdminComponent {
     this.router.navigate(['/admin_edit', id]);
 
   }
-
-
-
-
 
 
 
