@@ -20,4 +20,8 @@ describe('AdminComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('test_submit_form', () => {
+    expect(component.submitAdminForm()).toBeTruthy();
+  });
 });

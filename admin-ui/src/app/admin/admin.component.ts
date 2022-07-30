@@ -58,7 +58,7 @@ export class AdminComponent {
   submitAdminForm = () => {
     console.log('admin obj ', this.admin);
 
-
+//userd to post api call
     var admin_form: any = {
       adminName: this.adminForm.value['adminName'],
       adminPass: this.adminForm.value['adminPass'],
