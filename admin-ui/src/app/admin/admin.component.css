@@ -8,6 +8,10 @@
     border: 10%;
 }
 
+table{
+    text-align: center;
+    border: 10%;
+}
 .submit-button{
     width: 25%;
     height: 10%;

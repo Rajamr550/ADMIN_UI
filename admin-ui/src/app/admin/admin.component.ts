@@ -15,7 +15,7 @@ export class AdminComponent {
   forms: any = [];
   adminDetails: Array<AdminEntity> = new Array();
   admin_form: Array<AdminEntity> = new Array();
-
+  public errorMsg: any;
   adminId: number = 0;
 
   admin: AdminEntity = new AdminEntity();
@@ -33,10 +33,12 @@ export class AdminComponent {
 
     this.adminService.getAllAdmins().subscribe((serverResponse: any) => {
       console.log('constrcutor serverResponse ', serverResponse);
-      // this.forms = serverResponse;
       this.forms = serverResponse;
 
-    })
+    },
+      (error) => {
+        this.errorMsg = error;
+      })
   }
 
 
@@ -58,7 +60,7 @@ export class AdminComponent {
   submitAdminForm = () => {
     console.log('admin obj ', this.admin);
 
-//userd to post api call
+    //userd to post api call
     var admin_form: any = {
       adminName: this.adminForm.value['adminName'],
       adminPass: this.adminForm.value['adminPass'],
@@ -72,7 +74,11 @@ export class AdminComponent {
       console.log('createNewAdmin - serviceResponse : ', serverResponse);
 
       this.forms.push(serverResponse);
-    })
+    },
+      (error) => {
+        this.errorMsg = error;
+      }
+    )
 
     console.log(this.adminForm.value);
     this.adminService.addAdmins(admin_form);
@@ -87,10 +93,19 @@ export class AdminComponent {
   deleteAdminById = (id: any) => {
     console.log("delete called ", id);
     this.adminService.deleteByadminId(id).subscribe((serverResponse: any) => {
-      this.forms.pop(id);
+      const i = this.forms.findIndex((e: { id: any; }) => e.id === id);
+      if (i !== -1) {
+        this.forms.splice(i, 1);
+      }
+
+
       console.log('deleteByID - serviceResponse : ', serverResponse);
 
-    });
+    },
+      (error) => {
+        this.errorMsg = error;
+      }
+    );
   }
 
 

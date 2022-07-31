@@ -1,8 +1,11 @@
 import { Injectable } from '@angular/core';
 import { AdminEntity } from '../entity/admin.entity';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 
+
+
+import { throwError, Observable } from 'rxjs'
+import { catchError } from 'rxjs/operators'
 
 @Injectable({ providedIn: 'root' })
 export class AdminService {
@@ -12,6 +15,9 @@ export class AdminService {
     postUrl = 'http://localhost:7779/admin/user';
     searchUrl = 'http://localhost:7779/admin/?name=';
     editUrl = 'http://localhost:7779/admin/user/';
+
+
+
     constructor(private httpClient: HttpClient) {
 
     }
@@ -30,7 +36,8 @@ export class AdminService {
             this.editUrl + id,
             JSON.stringify(adminForms),
             httpOptions
-        );
+        ).pipe(
+            catchError(this.handleError));
     }
 
 
@@ -49,7 +56,8 @@ export class AdminService {
             this.postUrl,
             JSON.stringify(adminForms),
             httpOptions
-        );
+        ).pipe(
+            catchError(this.handleError));
     }
 
 
@@ -63,19 +71,19 @@ export class AdminService {
         },
     ];
 
-    searchByCriteria(text: any): Observable<any> {
+    // searchByCriteria(text: any): Observable<any> {
 
-        let httpOptions = {
-            headers: new HttpHeaders({
-                'Access-Control-Allow-Origin': '*',
-                'Content-Type': 'application/json'
+    //     let httpOptions = {
+    //         headers: new HttpHeaders({
+    //             'Access-Control-Allow-Origin': '*',
+    //             'Content-Type': 'application/json'
 
-            }),
-        };
+    //         }),
+    //     };
 
-        return this.httpClient.get<any>(this.searchUrl + text, httpOptions);
+    //     return this.httpClient.get<any>(this.searchUrl + text, httpOptions);
 
-    }
+    // }
 
     deleteByadminId(adminId: number): Observable<Boolean> {
         const headers = {
@@ -89,21 +97,47 @@ export class AdminService {
 
             headers: headers
 
-        });
+        }).pipe(
+            catchError(this.handleError));
     }
 
+
+
+    addAdmins(adminObject: AdminEntity) {
+        this.admin.push(adminObject);
+    }
     getAllAdmins(): Observable<any> {
         let httpOptions = {
             headers: new HttpHeaders({
                 'Access-Control-Allow-Origin': '*',
             }),
         };
-        return this.httpClient.get<any>(this.getUrl, httpOptions);
+        return this.httpClient.get<any>(this.getUrl, httpOptions)
+            .pipe(
+                catchError(this.handleError))
+
+
     }
 
-    addAdmins(adminObject: AdminEntity) {
-        this.admin.push(adminObject);
+
+    private handleError(error: HttpErrorResponse) {
+        if (error.status === 0) {
+            // A client-side or network error occurred. Handle it accordingly.
+            console.error('An error occurred:', error.error);
+        } else {
+            // The backend returned an unsuccessful response code.
+            // The response body may contain clues as to what went wrong.
+            console.error(
+                `Backend returned code ${error.status}, body was: `, error.error);
+        }
+        // Return an observable with a user-facing error message.
+        return throwError(() => new Error('Something bad happened; please try again later.'));
     }
+
+    // errorHandler(error: HttpErrorResponse) {
+
+    //     throwError(error.message || " Internal Server Error");
+    // }
 }
 
 
