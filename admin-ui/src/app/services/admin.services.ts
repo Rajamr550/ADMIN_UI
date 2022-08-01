@@ -103,9 +103,9 @@ export class AdminService {
 
 
 
-    addAdmins(adminObject: AdminEntity) {
-        this.admin.push(adminObject);
-    }
+    // addAdmins(adminObject: AdminEntity) {
+    //     this.admin.push(adminObject);
+    // }
     getAllAdmins(): Observable<any> {
         let httpOptions = {
             headers: new HttpHeaders({

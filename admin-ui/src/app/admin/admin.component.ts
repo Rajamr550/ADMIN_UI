@@ -3,6 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AdminEntity } from '../entity/admin.entity';
 import { Router } from '@angular/router';
 import { AdminService } from '../services/admin.services';
+import { JsonPipe } from '@angular/common';
 
 @Component({
   selector: 'admin',
@@ -13,6 +14,7 @@ import { AdminService } from '../services/admin.services';
 export class AdminComponent {
   @Output()
   addForm: EventEmitter<AdminEntity> = new EventEmitter();
+  addData: EventEmitter<any> = new EventEmitter();
 
   dtOptions: DataTables.Settings = {};
   forms: any = [];
@@ -24,6 +26,11 @@ export class AdminComponent {
   admin: AdminEntity = new AdminEntity();
 
   editAdmin: AdminEntity = new AdminEntity();
+
+  edit_email: any;
+  name: any;
+  mobile: any;
+  mail: any;
 
   constructor(private adminService: AdminService, private router: Router) { }
   ngOnInit(): void {
@@ -66,12 +73,12 @@ export class AdminComponent {
     console.log('admin obj ', this.admin);
 
     //userd to post api call
-    var admin_form: any = {
-      adminName: this.adminForm.value['adminName'],
-      adminPass: this.adminForm.value['adminPass'],
-      adminPhone: this.adminForm.value['adminPhone'],
-      adminMail: this.adminForm.value['adminMail']
-    };
+    // var admin_form: any = {
+    //   adminName: this.adminForm.value['adminName'],
+    //   adminPass: this.adminForm.value['adminPass'],
+    //   adminPhone: this.adminForm.value['adminPhone'],
+    //   adminMail: this.adminForm.value['adminMail']
+    // };
 
 
 
@@ -84,9 +91,24 @@ export class AdminComponent {
         this.errorMsg = error;
       }
     )
+    console.log("forms -- ", this.forms)
 
-    console.log(this.adminForm.value);
-    this.adminService.addAdmins(admin_form);
+    // console.log(this.adminForm.value);
+    // this.adminService.addAdmins(admin_form);
+    for (let i = 0; i < this.forms.length; i++) {
+      console.log("Block statement execution no", i);
+      console.log(" try --", this.forms.name)
+    }
+
+    let list: any[] = [];
+
+    for (let form of this.forms) {
+      list.push(form.id);
+    }
+
+    console.log("list ==== > ", list);
+
+
 
   }
 
@@ -117,20 +139,31 @@ export class AdminComponent {
   // editAdmin = this.forms
   navToEditPage = (id: number) => {
     const i = this.forms.findIndex((e: { id: any; }) => e.id === id);
-    if (i !== -1) {
-      this.editAdmin.email = this.forms.
-      console.log("edit adm   ", i, this.forms.adminMail);
+    // if (i !== -1) {
+    //   this.editAdmin.email = this.forms.
+    //     console.log("edit adm   ", i, edit_email);
 
-    }
-    console.log("nav called", id);
+    // }
+    // console.log("nav called", id);
     this.router.navigate(['/admin_edit', id]);
 
-  }
+
+
+
+    }
 
 
 
 
-}
+
+    }
+
+  
+
+  //console.log(: any"forms -- ", this: any.forms: any);
+
+
+
 
 
 

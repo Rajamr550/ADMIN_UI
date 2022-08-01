@@ -21,20 +21,25 @@ export class AdminEditComponent {
   admin: AdminEntity = new AdminEntity();
   text: any;
 
-  editId: any = 0;;
+  editId: any = 0; name: any;
+  mail: any;
+  mobile: any;
+  ;
 
   ngOnInit(): void {
     let iod = this.route.snapshot.paramMap.get('id');
     console.log("id value ", iod)
     this.editId = iod;
-    console.log("Admins ", this.admins)
-    const i = this.admins.findIndex((e: { id: any; }) => e.id === this.editId);
-    if (i !== -1) {
-      console.log("admins form ", this.admins);
+    for (let form of this.admins) {
+      if (form.id === this.editId) {
+        this.name = form.name;
+        this.mail = form.email;
+        this.mobile = form.phNumber;
+
+      }
     }
-    else {
-      console.log(" invalid id to edit")
-    }
+
+    console.log("mail ", this.admins)
   }
 
   constructor(private adminService: AdminService, private route: ActivatedRoute) {
@@ -74,8 +79,7 @@ export class AdminEditComponent {
       this.forms.push(serverResponse);
     })
 
-    console.log(this.adminForm.value);
-    this.adminService.addAdmins(admin_form);
+
 
   }
   deleteAdminById = (id: any) => {
