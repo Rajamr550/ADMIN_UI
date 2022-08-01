@@ -92,9 +92,9 @@
 
                     <tr *ngFor="let detail of forms">
                         <td>{{detail.id}}</td>
-                        <td>{{detail.name}}</td>
-                        <td>{{detail.email}}</td>
-                        <td>{{detail.phNumber}}</td>
+                        <td #edit_name>{{detail.name}}</td>
+                        <td #edit_email>{{detail.email}}</td>
+                        <td #edit_mobile>{{detail.phNumber}}</td>
                         <td><button type="button" (click)="navToEditPage(detail.id)">
                                 <mat-icon [ngStyle]="{'color':'BLUE'}" [ngStyle]="{'color':'BLUE'}"
                                     class="icon-display">
