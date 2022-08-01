@@ -1,4 +1,6 @@
-/* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css2?family=Fjalla+One&family=Ubuntu&display=swap');
+font-family: 'Fjalla One', sans-serif;
+font-family: 'Ubuntu', sans-serif;
 .icon-display {
    transform: scale(2);
    background-color: blue;
@@ -28,4 +30,15 @@ border: 1px solid #eee;
 border-radius: 20px;
 box-shadow: 5px 5px 5px #eee;
 text-shadow: none;
+}
+
+.big{
+    height: 50%;
+    width: 50%;
+    size: 20%;
+    border: 10%;
+}
+
+h2{
+font-size: 45px`;
 }

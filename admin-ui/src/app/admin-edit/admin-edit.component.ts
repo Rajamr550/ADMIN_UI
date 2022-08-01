@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AdminEntity } from '../entity/admin.entity';
 import { Router, RouterModule, ActivatedRoute } from '@angular/router';
@@ -10,6 +10,8 @@ import { AdminService } from '../services/admin.services';
   templateUrl: './admin-edit.component.html'
 })
 export class AdminEditComponent {
+  @Input()
+  public admins: Array<AdminEntity> = [];
   forms: any = [];
   adminDetails: Array<AdminEntity> = new Array();
   admin_form: Array<AdminEntity> = new Array();
@@ -25,6 +27,14 @@ export class AdminEditComponent {
     let iod = this.route.snapshot.paramMap.get('id');
     console.log("id value ", iod)
     this.editId = iod;
+    console.log("Admins ", this.admins)
+    const i = this.admins.findIndex((e: { id: any; }) => e.id === this.editId);
+    if (i !== -1) {
+      console.log("admins form ", this.admins);
+    }
+    else {
+      console.log(" invalid id to edit")
+    }
   }
 
   constructor(private adminService: AdminService, private route: ActivatedRoute) {
