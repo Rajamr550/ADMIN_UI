@@ -5,7 +5,7 @@ COPY package*.json .
 RUN npm install
 RUN npm run prod
 
-FROM nginx:1.22.0
+FROM nginx:1.19
 
 COPY ./nginx/nginx.conf /etc/nginx/nginx.conf
 COPY --from=build /app/dist/admin-ui/ /usr/share/nginx/html
