@@ -60,10 +60,10 @@ export class AdminComponent {
 
   adminForm = new FormGroup({
     adminId: new FormControl([Validators.required]),
-    adminName: new FormControl([Validators.required]),
-    adminPass: new FormControl([Validators.required]),
-    adminPhone: new FormControl([Validators.required]),
-    adminMail: new FormControl([Validators.required])
+    adminName: new FormControl([Validators.required], Validators.minLength(3)),
+    adminPass: new FormControl([Validators.required], Validators.minLength(3)),
+    adminPhone: new FormControl([Validators.required], Validators.minLength(3)),
+    adminMail: new FormControl([Validators.required], Validators.minLength(3))
   })
 
 
@@ -150,15 +150,15 @@ export class AdminComponent {
 
 
 
-    }
+  }
 
 
 
 
 
-    }
+}
 
-  
+
 
   //console.log(: any"forms -- ", this: any.forms: any);
 

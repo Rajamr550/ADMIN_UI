@@ -10,9 +10,8 @@ import { AdminService } from '../services/admin.services';
   templateUrl: './admin-edit.component.html'
 })
 export class AdminEditComponent {
-  @Input()
-  public admins: Array<AdminEntity> = [];
-  forms: any = [];
+  @Input() forms: any[] | undefined;
+
   adminDetails: Array<AdminEntity> = new Array();
   admin_form: Array<AdminEntity> = new Array();
 
@@ -27,6 +26,7 @@ export class AdminEditComponent {
   ;
 
   ngOnInit(): void {
+    console.log("forms ,,", this.admins)
     let iod = this.route.snapshot.paramMap.get('id');
     console.log("id value ", iod)
     this.editId = iod;
