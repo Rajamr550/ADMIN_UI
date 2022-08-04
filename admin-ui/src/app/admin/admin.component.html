@@ -96,7 +96,7 @@
                         <td #edit_name>{{detail.name}}</td>
                         <td #edit_email>{{detail.email}}</td>
                         <td #edit_mobile>{{detail.phNumber}}</td>
-                        <td><button type="button" (click)="navToEditPage(detail.id)">
+                        <td><button type="button" (click)="navToEditPage(detail.id,detail)">
                                 <mat-icon [ngStyle]="{'color':'BLUE'}" [ngStyle]="{'color':'BLUE'}"
                                     class="icon-display">
                                     mode_edit</mat-icon>

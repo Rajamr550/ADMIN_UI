@@ -12,6 +12,8 @@ import { JsonPipe } from '@angular/common';
 
 })
 export class AdminComponent {
+  @Output() redirect: EventEmitter<any> = new EventEmitter();
+
   @Output()
   addForm: EventEmitter<AdminEntity> = new EventEmitter();
   addData: EventEmitter<any> = new EventEmitter();
@@ -31,6 +33,8 @@ export class AdminComponent {
   name: any;
   mobile: any;
   mail: any;
+
+  detail:any = {};
 
   constructor(private adminService: AdminService, private router: Router) { }
   ngOnInit(): void {
@@ -60,10 +64,10 @@ export class AdminComponent {
 
   adminForm = new FormGroup({
     adminId: new FormControl([Validators.required]),
-    adminName: new FormControl([Validators.required], Validators.minLength(3)),
+    adminName: new FormControl([Validators.required], Validators.minLength(4)),
     adminPass: new FormControl([Validators.required], Validators.minLength(3)),
     adminPhone: new FormControl([Validators.required], Validators.minLength(3)),
-    adminMail: new FormControl([Validators.required], Validators.minLength(3))
+    adminMail: new FormControl([Validators.required], Validators.minLength(10))
   })
 
 
@@ -137,17 +141,16 @@ export class AdminComponent {
 
 
   // editAdmin = this.forms
-  navToEditPage = (id: number) => {
+  navToEditPage = (id: number, detail: any) => {
     const i = this.forms.findIndex((e: { id: any; }) => e.id === id);
-    // if (i !== -1) {
-    //   this.editAdmin.email = this.forms.
-    //     console.log("edit adm   ", i, edit_email);
 
-    // }
-    // console.log("nav called", id);
+
+    this.redirect.emit(detail);
+    console.log("admin nav to edit ", detail)
+
+    this.adminService.setData(detail);
+
     this.router.navigate(['/admin_edit', id]);
-
-
 
 
   }

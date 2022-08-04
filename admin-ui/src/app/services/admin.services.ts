@@ -15,12 +15,21 @@ export class AdminService {
     postUrl = 'http://localhost:7779/admin/user';
     searchUrl = 'http://localhost:7779/admin/?name=';
     editUrl = 'http://localhost:7779/admin/user/';
-
-
+    detail: any = {};
 
     constructor(private httpClient: HttpClient) {
 
     }
+
+    setData(detail: any) {
+        this.detail = detail;
+    }
+
+    getData(): any {
+        return this.detail;
+    }
+
+    
     editAdmin(id: any, adminForms: any): Observable<any> {
 
         let httpOptions = {

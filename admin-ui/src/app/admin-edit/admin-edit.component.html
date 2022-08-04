@@ -18,8 +18,7 @@
 
             <div class="form-group">
                 <label>Name</label>
-                <input type="text" [(ngModel)]="admin.name" formControlName="adminName" placeholder="{{name}}"
-                    class="form-control" />
+                <input type="text" [(ngModel)]="detail.name" formControlName="adminName" class="form-control" />
             </div>
             <div *ngIf="adminForm.controls['adminName'].hasError('required')" class="alert alert-danger">
                 Please add your name
@@ -36,8 +35,8 @@
 
             <div class="form-group">
                 <label>Email</label>
-                <input type="email" [(ngModel)]="admin.email" formControlName="adminMail" placeholder="{{mail}}"
-                    class="form-control" />
+                <input type="email" [(ngModel)]="detail.email" formControlName="adminMail"
+                    placeholder="{{detail.email}}" class="form-control" />
             </div>
             <div *ngIf="adminForm.controls['adminMail'].hasError('required')" class="alert alert-danger">
                 Please fill the email column
@@ -45,8 +44,8 @@
 
             <div class="form-group">
                 <label>Mobile</label>
-                <input type="number" [(ngModel)]="admin.phNumber" min="10" max="10" formControlName="adminPhone"
-                    placeholder="{{mobile}}" class="form-control" />
+                <input type="number" [(ngModel)]="detail.phNumber" min="10" max="10" formControlName="adminPhone"
+                    placeholder="{{detail.Mobile}}" class="form-control" />
             </div>
             <div *ngIf="adminForm.controls['adminPhone'].hasError('required')" class="alert alert-danger">
                 Please fill the phone number column

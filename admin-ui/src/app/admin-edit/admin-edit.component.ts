@@ -10,6 +10,8 @@ import { AdminService } from '../services/admin.services';
   templateUrl: './admin-edit.component.html'
 })
 export class AdminEditComponent {
+  @Input() data: any = {};
+
   @Input()
   public admins: Array<AdminEntity> = [];
   forms: any = [];
@@ -24,7 +26,11 @@ export class AdminEditComponent {
   editId: any = 0; name: any;
   mail: any;
   mobile: any;
-  ;
+
+  detail: any = {};
+
+  pass: string = '';
+
 
   ngOnInit(): void {
     let iod = this.route.snapshot.paramMap.get('id');
@@ -48,6 +54,9 @@ export class AdminEditComponent {
     //   console.log('constrcutor serverResponse ', serverResponse);
     //   this.forms = serverResponse;
     // })
+    this.detail = this.adminService.getData();
+
+    console.log("data from parent ", this.detail);
   }
 
   adminForm = new FormGroup({
@@ -72,6 +81,15 @@ export class AdminEditComponent {
       adminMail: this.adminForm.value['adminMail'],
 
     };
+
+    console.log("after edit update --", this.detail);
+
+    this.admin.email = this.detail.email;
+    this.admin.phNumber = this.detail.phNumber;
+    this.admin.name = this.detail.name;
+    //this.admin.password = this.pass;
+
+    console.log("admin agter init to detail ", this.admin)
 
     this.adminService.editAdmin(this.editId, this.admin).subscribe((serverResponse: any) => {
       console.log('edit  - serviceResponse : ', serverResponse);
