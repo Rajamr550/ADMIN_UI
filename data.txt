@@ -1,1 +1,2 @@
 https://www.jhipster.tech/creating-an-app/#2
+https://start.jhipster.tech/generate-application
