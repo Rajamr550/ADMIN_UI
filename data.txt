@@ -1,7 +1,1 @@
-
-
-        <div class="form-group">
-            <label for="searchText">Search:</label>
-            <input type="text" class="form-control" #searchText (keyup)="0">
-            <button type="button" (click) = "pipe22(searchText)" >click me new</button>
-        </div>
+https://www.jhipster.tech/creating-an-app/#2
